@@ -1926,6 +1926,9 @@ BlockMorph.prototype.init = function () {
     this.instantiationSpec = null; // spec to set upon fullCopy() of template
     this.category = null; // for zebra coloring (non persistent)
 
+    // debug bool
+    this.debug = false;
+
     BlockMorph.uber.init.call(this);
     this.color = new Color(0, 17, 173);
 };
@@ -2082,6 +2085,13 @@ BlockMorph.prototype.userMenu = function () {
         "help...",
         'showHelp'
     );
+    // toggling debug mode for block
+    menu.addItem("toggle debug...",
+        function() {
+            this.debug = !this.debug;
+            }
+        );
+
     if (shiftClicked) {
         top = this.topBlock();
         if (top instanceof ReporterBlockMorph) {
